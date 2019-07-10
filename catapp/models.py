@@ -5,11 +5,13 @@ GENDER_CHOICES = (("M", "Male"), ("F", "Female"))
 
 
 class Home(models.Model):
-    HOME_CHOICES = (("LANDED", "Landed"), ("CONDO", "Condominium"))
+    LANDED = "LANDED"
+    CONDO = "CONDO"
+    HOME_CHOICES = ((LANDED, "Landed"), (CONDO, "Condominium"))
 
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
-    type = models.CharField(choices=HOME_CHOICES, default="Landed", max_length=100)
+    type = models.CharField(choices=HOME_CHOICES, default=LANDED, max_length=100)
 
     def __str__(self):
         return self.name
