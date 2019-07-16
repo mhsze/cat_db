@@ -1,9 +1,12 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
+from rest_framework.authtoken.models import Token
 from rest_framework.test import APIRequestFactory
 
 from ..models import Home
 from ..serializers import HomeSerializer
+from ..views import HomeViewSet
 
 
 class HomeSerializerTestCase(TestCase):
@@ -19,12 +22,19 @@ class HomeSerializerTestCase(TestCase):
         )
 
     def test_serializer_retrieve(self):
+        # Generate token
+        self.user = User.objects.create_user("admin", "admin@example.com", "bar")
+        self.token = Token.objects.create(user=self.user)
+        # Overwrite setup request to include auth token for data retrieval
+        self.request = self.factory.get(
+            "/home/", HTTP_AUTHORIZATION="Token {}".format(self.token.key)
+        )
+        view = HomeViewSet.as_view(actions={"get": "retrieve"})
+        response = view(self.request, pk=self.office.id)
         # Initialize serializer instance
         office = HomeSerializer(self.office, context={"request": self.request})
-        # Add url to office object due to using hyperlinked serializer
-        self.office.url = self.home_url
-        # Check if serializer and model object is the same
-        self.assertDictContainsSubset(office.data, self.office.__dict__)
+        # Check if serializer and response data is the same
+        self.assertDictContainsSubset(office.data, response.data)
 
     def test_serializer_update(self):
         # Initialize serializer instance
