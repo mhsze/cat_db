@@ -1,7 +1,9 @@
 from django.db import models
 
 # Create your models here.
-GENDER_CHOICES = (("M", "Male"), ("F", "Female"))
+MALE = "M"
+FEMALE = "F"
+GENDER_CHOICES = ((MALE, "Male"), (FEMALE, "Female"))
 
 
 class Home(models.Model):

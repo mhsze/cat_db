@@ -3,9 +3,9 @@
 from rest_framework import serializers
 from rest_framework.serializers import HyperlinkedModelSerializer
 
-from catapp.models import GENDER_CHOICES
-
 from .models import Breed, Cat, Home, Human
+
+# from catapp.models import GENDER_CHOICES
 
 
 class GenderChoiceField(serializers.ChoiceField):
@@ -34,7 +34,7 @@ class HumanSerializer(HyperlinkedModelSerializer):
         many=True, read_only=True, view_name="cat-detail"
     )
     # cats_name = serializers.StringRelatedField(many=True, read_only=True, source='cats')
-    gender = GenderChoiceField(choices=GENDER_CHOICES)
+    # gender = GenderChoiceField(choices=GENDER_CHOICES)
 
     class Meta:
         model = Human
@@ -53,7 +53,7 @@ class BreedSerializer(HyperlinkedModelSerializer):
 class CatSerializer(HyperlinkedModelSerializer):
     id = serializers.PrimaryKeyRelatedField(read_only=True)
     # gender = serializers.ChoiceField(choices=GENDER_CHOICES)
-    gender = GenderChoiceField(choices=GENDER_CHOICES)
+    # gender = GenderChoiceField(choices=GENDER_CHOICES)
     home = serializers.SerializerMethodField("owner_home")
 
     def owner_home(self, cat):
@@ -63,6 +63,7 @@ class CatSerializer(HyperlinkedModelSerializer):
         model = Cat
         fields = (
             "url",
+            "id",
             "name",
             "gender",
             "date_of_birth",
