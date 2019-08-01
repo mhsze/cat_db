@@ -1,5 +1,7 @@
 Django>=2.0,<3.0
 djangorestframework==3.9.4
+Pillow>=5.4.1
 psycopg2>=2.7,<3.0
 pytest-django==3.5.1
-wagtail==2.4
+wagtail>=2.4
+Willow>=1.1

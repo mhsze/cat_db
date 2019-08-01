@@ -1,0 +1,35 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n %}
+
+{% block titletag %}Home{% endblock %}
+
+{% block content %}
+
+    {% include "wagtailadmin/shared/header.html" with title="Home" add_link="cathome:add" add_text="Add Home" search_url="cathome:index" %}
+
+    <div class="nice-padding">
+        <table class="listing">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Type</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for home in homes %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'cathome:edit' home.id %}">{{ home.name }}</a></td>
+                    <td>{{ home.address }}</td>
+                    <td>{{ home.type }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

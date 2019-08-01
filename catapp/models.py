@@ -1,4 +1,5 @@
 from django.db import models
+from wagtail.snippets.models import register_snippet
 
 # Create your models here.
 MALE = "M"
@@ -6,6 +7,7 @@ FEMALE = "F"
 GENDER_CHOICES = ((MALE, "Male"), (FEMALE, "Female"))
 
 
+@register_snippet
 class Home(models.Model):
     LANDED = "LANDED"
     CONDO = "CONDO"
@@ -19,6 +21,7 @@ class Home(models.Model):
         return self.name
 
 
+@register_snippet
 class Human(models.Model):
     name = models.CharField(max_length=255)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
@@ -30,6 +33,7 @@ class Human(models.Model):
         return self.name
 
 
+@register_snippet
 class Breed(models.Model):
     name = models.CharField(max_length=255)
     origin = models.CharField(max_length=255)
@@ -39,6 +43,7 @@ class Breed(models.Model):
         return self.name
 
 
+@register_snippet
 class Cat(models.Model):
     name = models.CharField(max_length=255)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)

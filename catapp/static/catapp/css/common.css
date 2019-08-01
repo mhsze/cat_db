@@ -1,0 +1,62 @@
+.space-right {
+    margin-right: 10px;
+}
+
+.header-button {
+    position: absolute;
+    top: 16px;
+    right: 30px;
+}
+
+.header-button .button {
+    background-color: #358c8b;
+}
+
+/* ---- Modal box ---- */
+.modal .modal-dialog {
+    width: 700px;
+}
+
+.modal .modal-dialog .modal-content {
+    padding-bottom: 0;
+}
+
+.modal .modal-dialog .modal-content .modal-header {
+    padding: 0 15px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.modal .modal-dialog .modal-content .modal-header button.close {
+    width: 30px;
+    height: 30px;
+    top: 8px;
+    background-color: transparent;
+    border-color: transparent;
+    color: #666666;
+    font-size: 21px;
+    opacity: .5;
+}
+
+.modal .modal-dialog .modal-content .modal-header button.close:hover {
+    opacity: 1;
+}
+
+.modal .modal-dialog .modal-content .modal-body {
+    padding: 15px;
+}
+
+.modal .modal-dialog .modal-content .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+
+
+
+/* mobile portrait */
+@media (max-width: 479px) {
+    .header-button {
+        max-width: 33px;
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,41 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n %}
+
+{% block titletag %}Home{% endblock %}
+
+{% block content %}
+
+    {% include "wagtailadmin/shared/header.html" with title="Cat" add_link="cat:add" add_text="Add Cat" search_url="cat:index" %}
+
+    <div class="nice-padding">
+        <table class="listing">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Date of birth</th>
+                <th>Description</th>
+                <th>Breed</th>
+                <th>Owner</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for cat in cats %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'cat:edit' cat.id %}">{{ cat.name }}</a></td>
+                    <td>{{ cat.gender }}</td>
+                    <td>{{ cat.date_of_birth }}</td>
+                    <td>{{ cat.description }}</td>
+                    <td>{{ cat.breed }}</td>
+                    <td>{{ cat.owner }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
